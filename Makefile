@@ -6,7 +6,7 @@
 #    By: falmeida <falmeida@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/03 13:21:21 by falmeida          #+#    #+#              #
-#    Updated: 2021/08/03 17:10:50 by falmeida         ###   ########.fr        #
+#    Updated: 2021/08/03 21:15:02 by falmeida         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,8 @@ CFLAGS = -Wall -Wextra -Werror -g
 
 NAME = so_long
 
-SRC = so_long.c
+SRC = so_long.c		\
+		blocks.c	\
 
 %.o: %.c
 	gcc -Imlx -c $< -o $@

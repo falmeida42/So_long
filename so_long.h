@@ -6,7 +6,7 @@
 /*   By: falmeida <falmeida@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/03 13:18:59 by falmeida          #+#    #+#             */
-/*   Updated: 2021/08/04 19:56:32 by falmeida         ###   ########.fr       */
+/*   Updated: 2021/08/04 20:14:20 by falmeida         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,18 +21,25 @@ typedef struct s_data {
     int     bits_per_pixel;
     int     line_length;
     int     endian;
-
-    char    *relative_path;
-    char    *floor;
-    char    *wall;
     int     img_width;
     int     img_height;
+
+    char    *player;
     int x;
     int y;
+}               t_data;
 
+typedef struct s_wall {
+    char    *wall;
+    int     wallx;
+    int     wally;
+} t_wall;
+
+typedef struct s_floor {
+    char    *floor;
     int floorx;
     int floory;
-}               t_data;
+} t_floor;
 
 # define UP 126
 # define DOWN 125

@@ -6,7 +6,7 @@
 /*   By: falmeida <falmeida@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/03 13:18:45 by falmeida          #+#    #+#             */
-/*   Updated: 2021/08/03 22:15:50 by falmeida         ###   ########.fr       */
+/*   Updated: 2021/08/04 19:11:36 by falmeida         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,53 +23,64 @@ int    key_print(int key, t_data *img)
 {
     if (key == UP)
     {
-        img->y -= 20;
+        img->y -= 100;
         build_player(img);
     }
     else if (key == DOWN)
     {
-        img->y += 20;
+        img->y += 100;
         build_player(img);
     }
     else if (key == LEFT)
     {
-        img->x -= 20;
+        img->x -= 100;
         build_player(img);
     }
     else if (key == RIGHT)
     {
-        img->x += 20;
+        img->x += 100;
         build_player(img);
     }
     return (0);
 }
 
-void    build_map(t_data *img, char *argv, int p)
+void    build_map(t_data *img, char **map, int p)
 {
-    int i;
     int x;
     int y;
+    int i;
+    int j;
 
+    x = 20;
+    y = 20;
     i = 0;
-    x = 0;
-    y = 0;
-    while (argv[i] != '\0')
+    j = 0;
+      while (i < 10)
     {
-        if (argv[i] == "1")
+        j = 0;
+        x = 20;
+        while (j < 18)
         {
-            build_block(img, x, y, p, 0xDDFFCC99);
-            x = x + p;
+            if (map[i][j] == '1')
+            {
+                build_block(img, x, y, p, 0xDDFFCC00);
+            }
+            x = x + p + 2;
+            j++;
         }
+        y = y + p + 1;
         i++;
     }
 }
 
-int main(int argc, char **argv)
+int main(void)
 {
     t_data  img;
-    t_data  img2;
     int     img_width;
     int     img_height;
+    char    **map;
+    int     i;
+    int     j;
 
     img.x = 460;
     img.y = 270;
@@ -80,10 +91,26 @@ int main(int argc, char **argv)
     img.win = mlx_new_window(img.mlx, 1920, 1080, "So Long");
     img.img = mlx_new_image(img.mlx, 1920, 1080);
     
-    build_map(&img, argv[1], 100);
+    map = (char **)malloc(10 * sizeof(char *) + 1);
+    i = 0;
+    while (i < 18)
+    {
+        map[i] = (char *)malloc(17 * sizeof(char) + 2);
+        i++;
+    }
+    i = 0;
+    while (i < 10)
+    {
+        j = 0;
+        while (j < 18)
+        {
+            map[i][j] = '1';
+            j++;
+        }
+        i++;
+    }
 
-    build_block(&img, 0, 0, 100, 0xDDFFCC99);
-    build_block(&img, 100, 0, 100, 0xDDFFCC99);
+    build_map(&img, map, 100);
 
     build_player(&img);
 

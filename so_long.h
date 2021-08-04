@@ -6,7 +6,7 @@
 /*   By: falmeida <falmeida@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/03 13:18:59 by falmeida          #+#    #+#             */
-/*   Updated: 2021/08/03 22:00:14 by falmeida         ###   ########.fr       */
+/*   Updated: 2021/08/04 19:13:58 by falmeida         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,5 @@ void    build_block(t_data *img, int x, int y, int p, int color);
 # include <unistd.h>
 # include <stdio.h>
 # include <mlx.h>
-
-
+# include <stdlib.h>
 #endif

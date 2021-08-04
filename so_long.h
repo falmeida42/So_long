@@ -6,7 +6,7 @@
 /*   By: falmeida <falmeida@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/03 13:18:59 by falmeida          #+#    #+#             */
-/*   Updated: 2021/08/04 19:13:58 by falmeida         ###   ########.fr       */
+/*   Updated: 2021/08/04 19:56:32 by falmeida         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,15 @@ typedef struct s_data {
     int     endian;
 
     char    *relative_path;
+    char    *floor;
+    char    *wall;
     int     img_width;
     int     img_height;
     int x;
     int y;
 
-    
+    int floorx;
+    int floory;
 }               t_data;
 
 # define UP 126

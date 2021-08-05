@@ -6,7 +6,7 @@
 /*   By: falmeida <falmeida@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/03 13:18:59 by falmeida          #+#    #+#             */
-/*   Updated: 2021/08/05 18:25:55 by falmeida         ###   ########.fr       */
+/*   Updated: 2021/08/05 22:41:34 by falmeida         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,13 +39,17 @@ typedef struct s_data {
     char    *player;
     int x;
     int y;
+
+    char    *collect;
+    int     collectx;
+    int     collecty;
 }               t_data;
 
-# define UP 126
-# define DOWN 125
-# define LEFT 123
-# define RIGHT 124
-
+# define W 13
+# define S 1
+# define A 0
+# define D 2
+# define ESC 53
 void    my_mlx_pixel_put(t_data *data, int x, int y, int color);
 void    mlx_line(t_data *data, int x, int y, int p, int color);
 void    mlx_block(t_data *data, int x, int y, int p, int color);

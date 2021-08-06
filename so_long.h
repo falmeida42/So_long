@@ -6,7 +6,7 @@
 /*   By: falmeida <falmeida@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/03 13:18:59 by falmeida          #+#    #+#             */
-/*   Updated: 2021/08/06 16:09:54 by falmeida         ###   ########.fr       */
+/*   Updated: 2021/08/06 17:47:16 by falmeida         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ typedef struct s_data {
     int playery;
 
     char    *collect;
-    int     collectx;
+    int     bag;
     int     collecty;
 }               t_data;
 

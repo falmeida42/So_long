@@ -6,7 +6,7 @@
 /*   By: falmeida <falmeida@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/03 13:18:59 by falmeida          #+#    #+#             */
-/*   Updated: 2021/08/05 22:41:34 by falmeida         ###   ########.fr       */
+/*   Updated: 2021/08/06 16:09:54 by falmeida         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ typedef struct s_data {
     char    *door;
     int     doorx;
     int     doory;
-    
+
     char    *floor;
     int floorx;
     int floory;
@@ -37,8 +37,8 @@ typedef struct s_data {
     int     wally;
 
     char    *player;
-    int x;
-    int y;
+    int playerx;
+    int playery;
 
     char    *collect;
     int     collectx;

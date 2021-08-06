@@ -6,7 +6,7 @@
 /*   By: falmeida <falmeida@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/03 13:18:45 by falmeida          #+#    #+#             */
-/*   Updated: 2021/08/06 21:37:09 by falmeida         ###   ########.fr       */
+/*   Updated: 2021/08/06 22:06:24 by falmeida         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ int main(int argc, char **argv)
 	int     img_width;
 	int     img_height;
 
+	get_next_line(1, argv);
 	pick_map(argv[1]);
 	img.width = 13;
 	img.height = 6;

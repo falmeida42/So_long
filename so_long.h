@@ -6,7 +6,7 @@
 /*   By: falmeida <falmeida@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/03 13:18:59 by falmeida          #+#    #+#             */
-/*   Updated: 2021/08/06 21:54:27 by falmeida         ###   ########.fr       */
+/*   Updated: 2021/08/06 22:05:19 by falmeida         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,4 +66,5 @@ void    check_error(t_data *img, char map[7][14]);
 # include <stdio.h>
 # include <mlx.h>
 # include <stdlib.h>
+# include "get_next_line.h"
 #endif

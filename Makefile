@@ -6,7 +6,7 @@
 #    By: falmeida <falmeida@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/03 13:21:21 by falmeida          #+#    #+#              #
-#    Updated: 2021/08/06 21:48:48 by falmeida         ###   ########.fr        #
+#    Updated: 2021/08/06 22:07:28 by falmeida         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,9 +14,11 @@ CFLAGS = -Wall -Wextra -Werror -g -fsanitize=address
 
 NAME = so_long
 
-SRC = so_long.c		\
-		map.c		\
-		error.c 	\
+SRC = so_long.c					\
+		map.c					\
+		error.c 				\
+		get_next_line.c			\
+		get_next_line_utils.c	\
 
 %.o: %.c
 	gcc -Imlx -c $< -o $@

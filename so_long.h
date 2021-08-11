@@ -6,7 +6,7 @@
 /*   By: falmeida <falmeida@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/03 13:18:59 by falmeida          #+#    #+#             */
-/*   Updated: 2021/08/06 22:05:19 by falmeida         ###   ########.fr       */
+/*   Updated: 2021/08/11 19:40:41 by falmeida         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,17 @@ typedef struct s_data {
     int     width;
 	int     height;
 
+    int     size_x;
+    int     size_y;
+
+    char **map;
 }               t_data;
+
+typedef struct s_list
+{
+    char *content;
+    struct s_list *next;
+}               t_list;
 
 # define W 13
 # define S 1
@@ -60,7 +70,6 @@ void    change_map(t_data *img, char map[7][14]);
 void    build_map(t_data *img);
 int     key_print(int key, t_data *img);
 
-void    check_error(t_data *img, char map[7][14]);
 
 # include <unistd.h>
 # include <stdio.h>

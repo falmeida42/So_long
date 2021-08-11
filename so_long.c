@@ -6,7 +6,7 @@
 /*   By: falmeida <falmeida@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/03 13:18:45 by falmeida          #+#    #+#             */
-/*   Updated: 2021/08/06 22:06:24 by falmeida         ###   ########.fr       */
+/*   Updated: 2021/08/11 19:41:18 by falmeida         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,95 @@ void	pick_images(t_data *img)
 	img->addr = NULL;
 }
 
-void	pick_map(char *argv)
+size_t	ft_strlen(const char *src)
 {
-	printf("%s", argv);
+	size_t i;
+
+	i = 0;
+	while (src[i] != '\0')
+	{
+		i++;
+	}
+	return (i);
+}
+
+t_list	*ft_lstlast(t_list *lst)
+{
+	while (lst->next != NULL)
+	{
+		lst = lst->next;
+	}
+	return (lst);
+}
+
+void	ft_lstadd_back(t_list **lst, t_list *new)
+{
+	t_list	*tmp;
+
+	if (!*lst)
+    {
+        *lst = new;
+        return ;
+    }
+	(ft_lstlast(*lst))->next = new;
+}
+
+
+t_list	*ft_lstnew(void *content)
+{
+	t_list	*new;
+
+	new = malloc(sizeof(t_list));
+	if (!new)
+	{
+		return (NULL);
+	}
+	new->content = content;
+	new->next = NULL;
+	return (new);
+}
+
+void	build_my_map(t_data *img, t_list *link)
+{
+	char **map;
+	int i;
+	int y;
+	i = img->size_y;
+	map = (char **)malloc(sizeof(i + 1));
+	while (i > 1)
+	{
+		map[y] = malloc(sizeof(img->size_x + 1));
+		map[y] = link->content;
+		link = link->next;
+		i--;
+	}
+	map[y] = (char*)malloc(sizeof(char*) * 8);
+    map[y] = NULL;
+}
+
+void	content_map(t_data *img, char *argv)
+{
+	t_list *link;
+	t_list *tmp;
+	int fd;
+	char *line;
+	int ret;
+	int y;
+
+	link = NULL;
+	y = 1;
+	tmp = link;
+	fd = open(argv, O_RDONLY);
+	ret = get_next_line(fd, &line);
+	while (ret > 0)
+	{
+		y++;
+		tmp = ft_lstnew(line);
+		ft_lstadd_back(&link, tmp);
+		ret = get_next_line(fd, &line);
+	}
+	img->size_x = ft_strlen(line);
+	img->size_y = y;
 }
 
 int main(int argc, char **argv)
@@ -46,8 +132,9 @@ int main(int argc, char **argv)
 	int     img_width;
 	int     img_height;
 
-	get_next_line(1, argv);
-	pick_map(argv[1]);
+	if (argc != 2)
+		return (1);
+	content_map(&img, argv[1]);
 	img.width = 13;
 	img.height = 6;
 	img_width = img.width * 100;

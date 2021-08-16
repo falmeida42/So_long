@@ -6,7 +6,7 @@
 /*   By: falmeida <falmeida@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/03 13:18:45 by falmeida          #+#    #+#             */
-/*   Updated: 2021/08/16 19:59:40 by falmeida         ###   ########.fr       */
+/*   Updated: 2021/08/16 21:30:36 by falmeida         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,104 +35,6 @@ void	pick_images(t_data *img)
 	img->addr = NULL;
 }
 
-size_t	ft_strlen(const char *src)
-{
-	size_t i;
-
-	i = 0;
-	while (src[i] != '\0')
-	{
-		i++;
-	}
-	return (i);
-}
-
-t_list	*ft_lstlast(t_list *lst)
-{
-	while (lst->next != NULL)
-	{
-		lst = lst->next;
-	}
-	return (lst);
-}
-
-void	ft_lstadd_back(t_list **lst, t_list *new)
-{
-	t_list	*tmp;
-
-	if (!*lst)
-    {
-        *lst = new;
-        return ;
-    }
-	(ft_lstlast(*lst))->next = new;
-}
-
-
-t_list	*ft_lstnew(void *content)
-{
-	t_list	*new;
-
-	new = malloc(sizeof(t_list));
-	if (!new)
-	{
-		return (NULL);
-	}
-	new->content = content;
-	new->next = NULL;
-	return (new);
-}
-
-char    **map_builder(t_list *list, int i, int j)
-{
-    char **map;
-    int y = 0;
-    map = (char**)malloc(sizeof(char*) * (j + 1));
-    while (y < j)
-    {
-        map[y] = (char*)malloc(sizeof(char*) * (i + 1));
-        map[y] = list->content;
-        list = list->next;
-        y++;
-    }
-    map[y] = (char*)malloc(sizeof(char*) * 8);
-    map[y] = NULL;
-    y = 0;
-    return (map);
-}
-
-t_list	*content_map(t_data *img, char *argv)
-{
-	t_list *link;
-	t_list *tmp;
-	int fd;
-	char *line;
-	int ret;
-	int y;
-	int i;
-
-	link = NULL;
-	y = 0;
-	i = 1;
-	tmp = link;
-	fd = open(argv, O_RDONLY);
-	ret = 1;
-	while (ret > 0)
-	{
-		ret = get_next_line(fd, &line);
-		tmp = ft_lstnew(line);
-		ft_lstadd_back(&link, tmp);
-		if (i > 0)
-		{
-			img->size_x = ft_strlen(line);
-			i--;
-		}
-		y++;
-	}
-	img->size_y = y;
-	return (link);
-}
-
 int main(int argc, char **argv)
 {
 	t_data  img;
@@ -144,6 +46,8 @@ int main(int argc, char **argv)
 		return (1);
 	list = content_map(&img, argv[1]);
 	img.map = map_builder(list, img.size_x, img.size_y);
+	if (check_elements(&img) == 0)
+		return (1);
 	img.width = img.size_x;
 	img.height = img.size_y -1;
 	img_width = img.width * 100;

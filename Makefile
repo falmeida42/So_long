@@ -6,11 +6,11 @@
 #    By: falmeida <falmeida@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/03 13:21:21 by falmeida          #+#    #+#              #
-#    Updated: 2021/08/06 22:07:28 by falmeida         ###   ########.fr        #
+#    Updated: 2021/08/16 16:10:22 by falmeida         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-CFLAGS = -Wall -Wextra -Werror -g -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror -g
 
 NAME = so_long
 

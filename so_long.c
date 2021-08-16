@@ -6,7 +6,7 @@
 /*   By: falmeida <falmeida@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/03 13:18:45 by falmeida          #+#    #+#             */
-/*   Updated: 2021/08/11 19:41:18 by falmeida         ###   ########.fr       */
+/*   Updated: 2021/08/16 17:27:33 by falmeida         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,25 +83,25 @@ t_list	*ft_lstnew(void *content)
 	return (new);
 }
 
-void	build_my_map(t_data *img, t_list *link)
+char    **map_builder(t_list *list, int i, int j)
 {
-	char **map;
-	int i;
-	int y;
-	i = img->size_y;
-	map = (char **)malloc(sizeof(i + 1));
-	while (i > 1)
-	{
-		map[y] = malloc(sizeof(img->size_x + 1));
-		map[y] = link->content;
-		link = link->next;
-		i--;
-	}
-	map[y] = (char*)malloc(sizeof(char*) * 8);
+    char **map;
+    int y = 0;
+    map = (char**)malloc(sizeof(char*) * (j + 1));
+    while (y < j)
+    {
+        map[y] = (char*)malloc(sizeof(char*) * (i + 1));
+        map[y] = list->content;
+        list = list->next;
+        y++;
+    }
+    map[y] = (char*)malloc(sizeof(char*) * 8);
     map[y] = NULL;
+    y = 0;
+    return (map);
 }
 
-void	content_map(t_data *img, char *argv)
+t_list	*content_map(t_data *img, char *argv)
 {
 	t_list *link;
 	t_list *tmp;
@@ -124,22 +124,24 @@ void	content_map(t_data *img, char *argv)
 	}
 	img->size_x = ft_strlen(line);
 	img->size_y = y;
+	return (link);
 }
 
 int main(int argc, char **argv)
 {
 	t_data  img;
+	t_list	*list;
 	int     img_width;
 	int     img_height;
 
 	if (argc != 2)
 		return (1);
-	content_map(&img, argv[1]);
+	list = content_map(&img, argv[1]);
+	img.map = map_builder(list, img.size_x -1, img.size_y -1);
 	img.width = 13;
 	img.height = 6;
 	img_width = img.width * 100;
 	img_height = img.height * 100;
-
 	pick_images(&img);
 	img.mlx = mlx_init();
 	img.win = mlx_new_window(img.mlx, img_width, img_height, "So Long");

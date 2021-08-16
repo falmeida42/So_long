@@ -6,14 +6,14 @@
 /*   By: falmeida <falmeida@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/06 20:47:19 by falmeida          #+#    #+#             */
-/*   Updated: 2021/08/11 19:41:53 by falmeida         ###   ########.fr       */
+/*   Updated: 2021/08/16 17:44:05 by falmeida         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
 
-void	check_exit(t_data *img, char map[7][14], int pi, int pj)
+void	check_exit(t_data *img, char **map, int pi, int pj)
 {
 	if (img->bag == 0)
 	{
@@ -22,7 +22,7 @@ void	check_exit(t_data *img, char map[7][14], int pi, int pj)
 	}
 }
 
-int		count_bag(t_data *img, char map[7][14])
+int		count_bag(t_data *img, char **map)
 {
 	int i;
 	int j;
@@ -31,10 +31,11 @@ int		count_bag(t_data *img, char map[7][14])
 	bag = 0;
 	i = 0;
 	j = 0;
-	while (i < 7)
+
+	while (i < img->size_y - 1)
 	{
 		j = 0;
-		while (j < 14)
+		while (j < img->size_x - 1)
 		{
 			if (map[i][j] == 'C')
 				bag++;
@@ -45,7 +46,7 @@ int		count_bag(t_data *img, char map[7][14])
 	return (bag);
 }
 
-void    change_map(t_data *img, char map[7][14])
+void    change_map(t_data *img, char **map)
 {
 	int i;
 	int j;
@@ -55,12 +56,13 @@ void    change_map(t_data *img, char map[7][14])
 	int bag;
 
 	bag = count_bag(img, map);
+
 	img->bag = bag;
 	i = 0;
-	while (i < 7)
+	while (i < img->size_y - 1)
 	{
 		j = 0;
-		while (j < 14)
+		while (j < 5)
 		{
 			if (map[i][j] == 'P')
 			{
@@ -86,23 +88,15 @@ void    build_map(t_data *img)
 	int i;
 	int j;
 	int     p;
-
+	char **map;
 	p = 100;
-	static char map[7][14] = {
-		{'1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1'},
-		{'1', 'P', '0', '1', '0', '0', '0', '0', '0', 'C', '0', 'C', '1', '1'},
-		{'1', '0', '0', '1', '0', '0', '0', '0', '0', '0', '0', '0', '1', '1'},
-		{'1', '0', '0', '0', '0', '1', '1', '1', '1', '1', '0', '0', '1', '1'},
-		{'1', '0', '0', '0', '1', '1', 'E', '0', '0', '0', '0', '0', '1', '1'},
-		{'1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1'},
-		{'1'}};
+	map = img->map;
 	change_map(img, map);
-
 	i = 0;
-	  while (i < img->height)
+	while (i < 5)
 	{
 		j = 0;
-		while (j < img->width)
+		while (j < 13)
 		{
 			if (map[i][j] == '0')
 				draw_image(img, img->floor, i, j);
@@ -118,6 +112,7 @@ void    build_map(t_data *img)
 		}
 		i++;
 	}
+	printf("Hello\n");
 }
 
 int	key_print(int key, t_data *img)

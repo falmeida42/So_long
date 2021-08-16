@@ -6,7 +6,7 @@
 /*   By: falmeida <falmeida@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/06 20:47:19 by falmeida          #+#    #+#             */
-/*   Updated: 2021/08/16 17:44:05 by falmeida         ###   ########.fr       */
+/*   Updated: 2021/08/16 18:44:11 by falmeida         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,10 +59,10 @@ void    change_map(t_data *img, char **map)
 
 	img->bag = bag;
 	i = 0;
-	while (i < img->size_y - 1)
+	while (i < 6)
 	{
 		j = 0;
-		while (j < 5)
+		while (j < 13)
 		{
 			if (map[i][j] == 'P')
 			{
@@ -93,10 +93,10 @@ void    build_map(t_data *img)
 	map = img->map;
 	change_map(img, map);
 	i = 0;
-	while (i < 5)
+	while (i < img->height)
 	{
 		j = 0;
-		while (j < 13)
+		while (j < img->width)
 		{
 			if (map[i][j] == '0')
 				draw_image(img, img->floor, i, j);

@@ -6,7 +6,7 @@
 /*   By: falmeida <falmeida@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/03 13:18:45 by falmeida          #+#    #+#             */
-/*   Updated: 2021/08/16 17:27:33 by falmeida         ###   ########.fr       */
+/*   Updated: 2021/08/16 18:16:01 by falmeida         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,13 +114,13 @@ t_list	*content_map(t_data *img, char *argv)
 	y = 1;
 	tmp = link;
 	fd = open(argv, O_RDONLY);
-	ret = get_next_line(fd, &line);
+	ret = 1;
 	while (ret > 0)
 	{
 		y++;
+		ret = get_next_line(fd, &line);
 		tmp = ft_lstnew(line);
 		ft_lstadd_back(&link, tmp);
-		ret = get_next_line(fd, &line);
 	}
 	img->size_x = ft_strlen(line);
 	img->size_y = y;
@@ -137,9 +137,9 @@ int main(int argc, char **argv)
 	if (argc != 2)
 		return (1);
 	list = content_map(&img, argv[1]);
-	img.map = map_builder(list, img.size_x -1, img.size_y -1);
+	img.map = map_builder(list, 13, 6);
 	img.width = 13;
-	img.height = 6;
+	img.height = 5;
 	img_width = img.width * 100;
 	img_height = img.height * 100;
 	pick_images(&img);

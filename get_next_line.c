@@ -6,13 +6,13 @@
 /*   By: gumatos <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/09 16:51:08 by gumatos           #+#    #+#             */
-/*   Updated: 2021/03/09 18:07:56 by gumatos          ###   ########.fr       */
+/*   Updated: 2021/08/16 21:36:21 by falmeida         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-int			ft_find_char(char *str, char c)
+int	ft_find_char(char *str, char c)
 {
 	int		i;
 
@@ -23,13 +23,13 @@ int			ft_find_char(char *str, char c)
 	return (-1);
 }
 
-void		free_buff(char **buff)
+void	free_buff(char **buff)
 {
 	free(*buff);
 	*buff = NULL;
 }
 
-int			ft_add_line(char **buff, char **line)
+int	ft_add_line(char **buff, char **line)
 {
 	char	*tmp;
 	int		i;
@@ -57,7 +57,7 @@ int			ft_add_line(char **buff, char **line)
 	}
 }
 
-int			ft_out(char **buff, char **line, char **buff_read, int ret)
+int	ft_out(char **buff, char **line, char **buff_read, int ret)
 {
 	free(*buff_read);
 	if (ret < 0)
@@ -72,7 +72,7 @@ int			ft_out(char **buff, char **line, char **buff_read, int ret)
 		return (ft_add_line(buff, line));
 }
 
-int			get_next_line(int fd, char **line)
+int	get_next_line(int fd, char **line)
 {
 	static char	*buff = NULL;
 	char		*buff_read;

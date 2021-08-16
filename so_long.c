@@ -6,7 +6,7 @@
 /*   By: falmeida <falmeida@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/03 13:18:45 by falmeida          #+#    #+#             */
-/*   Updated: 2021/08/16 18:39:19 by falmeida         ###   ########.fr       */
+/*   Updated: 2021/08/16 19:59:40 by falmeida         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,20 +109,26 @@ t_list	*content_map(t_data *img, char *argv)
 	char *line;
 	int ret;
 	int y;
+	int i;
 
 	link = NULL;
-	y = 1;
+	y = 0;
+	i = 1;
 	tmp = link;
 	fd = open(argv, O_RDONLY);
 	ret = 1;
 	while (ret > 0)
 	{
-		y++;
 		ret = get_next_line(fd, &line);
 		tmp = ft_lstnew(line);
 		ft_lstadd_back(&link, tmp);
+		if (i > 0)
+		{
+			img->size_x = ft_strlen(line);
+			i--;
+		}
+		y++;
 	}
-	img->size_x = ft_strlen(line);
 	img->size_y = y;
 	return (link);
 }
@@ -137,9 +143,9 @@ int main(int argc, char **argv)
 	if (argc != 2)
 		return (1);
 	list = content_map(&img, argv[1]);
-	img.map = map_builder(list, 13, 6);
-	img.width = 13;
-	img.height = 5;
+	img.map = map_builder(list, img.size_x, img.size_y);
+	img.width = img.size_x;
+	img.height = img.size_y -1;
 	img_width = img.width * 100;
 	img_height = img.height * 100;
 	pick_images(&img);

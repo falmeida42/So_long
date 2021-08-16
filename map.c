@@ -6,7 +6,7 @@
 /*   By: falmeida <falmeida@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/06 20:47:19 by falmeida          #+#    #+#             */
-/*   Updated: 2021/08/16 18:44:11 by falmeida         ###   ########.fr       */
+/*   Updated: 2021/08/16 20:01:35 by falmeida         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,10 @@ int		count_bag(t_data *img, char **map)
 	i = 0;
 	j = 0;
 
-	while (i < img->size_y - 1)
+	while (i < img->size_y)
 	{
 		j = 0;
-		while (j < img->size_x - 1)
+		while (j < img->size_x)
 		{
 			if (map[i][j] == 'C')
 				bag++;
@@ -59,10 +59,10 @@ void    change_map(t_data *img, char **map)
 
 	img->bag = bag;
 	i = 0;
-	while (i < 6)
+	while (i < img->size_y)
 	{
 		j = 0;
-		while (j < 13)
+		while (j < img->size_x)
 		{
 			if (map[i][j] == 'P')
 			{
@@ -112,7 +112,6 @@ void    build_map(t_data *img)
 		}
 		i++;
 	}
-	printf("Hello\n");
 }
 
 int	key_print(int key, t_data *img)

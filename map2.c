@@ -6,7 +6,7 @@
 /*   By: falmeida <falmeida@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/16 20:14:00 by falmeida          #+#    #+#             */
-/*   Updated: 2021/08/16 21:43:31 by falmeida         ###   ########.fr       */
+/*   Updated: 2021/08/17 18:57:28 by falmeida         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ t_list	*content_map(t_data *img, char *argv)
 	int		ret;
 	int		y;
 	int		i;
+	int		z;
 
 	link = NULL;
 	y = 0;
@@ -60,6 +61,6 @@ t_list	*content_map(t_data *img, char *argv)
 		}
 		y++;
 	}
-	img->size_y = y;
+	img->size_y = y -1;
 	return (link);
 }

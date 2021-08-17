@@ -6,7 +6,7 @@
 /*   By: falmeida <falmeida@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/03 13:18:59 by falmeida          #+#    #+#             */
-/*   Updated: 2021/08/16 21:12:01 by falmeida         ###   ########.fr       */
+/*   Updated: 2021/08/17 19:44:56 by falmeida         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,5 +96,6 @@ t_list	*ft_lstnew(void *content);
 //error.c
 int	check_elements(t_data *img);
 int	check_walls(t_data *img);
+int	check_square(t_data *img);
 //error.c
 #endif

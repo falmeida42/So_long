@@ -6,7 +6,7 @@
 /*   By: falmeida <falmeida@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/03 13:18:45 by falmeida          #+#    #+#             */
-/*   Updated: 2021/08/16 21:30:36 by falmeida         ###   ########.fr       */
+/*   Updated: 2021/08/17 19:45:51 by falmeida         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,11 @@ int main(int argc, char **argv)
 		return (1);
 	list = content_map(&img, argv[1]);
 	img.map = map_builder(list, img.size_x, img.size_y);
-	if (check_elements(&img) == 0)
+	if (check_elements(&img) == 1 || check_walls(&img) == 1 ||
+check_square(&img) == 1)
 		return (1);
 	img.width = img.size_x;
-	img.height = img.size_y -1;
+	img.height = img.size_y;
 	img_width = img.width * 100;
 	img_height = img.height * 100;
 	pick_images(&img);

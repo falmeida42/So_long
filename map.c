@@ -6,7 +6,7 @@
 /*   By: falmeida <falmeida@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/06 20:47:19 by falmeida          #+#    #+#             */
-/*   Updated: 2021/08/16 21:40:16 by falmeida         ###   ########.fr       */
+/*   Updated: 2021/08/17 22:35:23 by falmeida         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,11 +50,8 @@ void	change_map(t_data *img, char **map)
 	int	j;
 	int	pi;
 	int	pj;
-	int	result;
-	int	bag;
 
-	bag = count_bag(img, map);
-	img->bag = bag;
+	img->bag = count_bag(img, map);
 	i = 0;
 	while (i < img->size_y)
 	{
@@ -74,7 +71,9 @@ void	change_map(t_data *img, char **map)
 		img->bag--;
 	if (map[pi + img->playerx / 100][pj + img->playery / 100] == 'E')
 		check_exit(img, map, pi, pj);
-	if (map[pi + img->playerx / 100][pj + img->playery / 100] == '1' || map[pi + img->playerx / 100][pj + img->playery / 100] == 'E' && img->bag > 0)
+	if (map[pi + img->playerx / 100][pj + img->playery / 100] == '1'
+		|| map[pi + img->playerx / 100][pj + img->playery / 100]
+			== 'E' && img->bag > 0)
 		return ;
 	map[pi][pj] = '0';
 	map[pi + img->playerx / 100][pj + img->playery / 100] = 'P';

@@ -6,7 +6,7 @@
 /*   By: falmeida <falmeida@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/06 21:11:37 by falmeida          #+#    #+#             */
-/*   Updated: 2021/08/17 19:43:37 by falmeida         ###   ########.fr       */
+/*   Updated: 2021/08/17 21:55:13 by falmeida         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	check_walls(t_data *img)
 		{
 			if (map[0][j] != '1' || map[i][0] != '1')
 				return (1);
-			if (map[img->size_y -1][j] == '0' || map[i][img->size_x -1] == '0')
+			if (map[img->size_y - 1][j] == '0' || map[i][img->size_x - 1] == '0')
 				return (1);
 			j++;
 		}
@@ -68,10 +68,8 @@ int	check_elements(t_data *img)
 		}
 		i++;
 	}
-
 	if (e < 1 || c < 1 || p != 1)
 		result = 1;
-
 	return (result);
 }
 

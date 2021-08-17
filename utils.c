@@ -6,7 +6,7 @@
 /*   By: falmeida <falmeida@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/16 20:09:36 by falmeida          #+#    #+#             */
-/*   Updated: 2021/08/16 20:09:49 by falmeida         ###   ########.fr       */
+/*   Updated: 2021/08/17 21:57:47 by falmeida         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 size_t	ft_strlen(const char *src)
 {
-	size_t i;
+	size_t	i;
 
 	i = 0;
 	while (src[i] != '\0')
@@ -38,10 +38,10 @@ void	ft_lstadd_back(t_list **lst, t_list *new)
 	t_list	*tmp;
 
 	if (!*lst)
-    {
-        *lst = new;
-        return ;
-    }
+	{
+		*lst = new;
+		return ;
+	}
 	(ft_lstlast(*lst))->next = new;
 }
 

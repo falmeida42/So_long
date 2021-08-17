@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gumatos <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: falmeida <falmeida@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/09 16:45:48 by gumatos           #+#    #+#             */
-/*   Updated: 2021/03/09 18:09:36 by gumatos          ###   ########.fr       */
+/*   Updated: 2021/08/17 22:03:20 by falmeida         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	len_s2 = 0;
 	while (*(s2 + len_s2))
 		++len_s2;
-	if (!(tmp = malloc((len_s1 + len_s2 + 1) * sizeof(char))))
+	tmp = malloc((len_s1 + len_s2 + 1) * sizeof(char));
+	if (!(tmp))
 		return (NULL);
 	i = -1;
 	while (++i < len_s1)
@@ -47,12 +48,14 @@ char	*ft_substr(const char *s, unsigned int start, size_t len)
 		++size;
 	if (start > size)
 	{
-		if (!(tmp = malloc(sizeof(*tmp))))
+		tmp = malloc(sizeof(*tmp));
+		if (!(tmp))
 			return (0);
 		*tmp = '\0';
 		return (tmp);
 	}
-	if (!s || !(tmp = malloc(sizeof(*tmp) * (len + 1))))
+	tmp = malloc(sizeof(*tmp) * (len + 1));
+	if (!s || !(tmp))
 		return (0);
 	*(tmp + len) = 0;
 	while (len--)
@@ -68,7 +71,8 @@ char	*ft_strdup(const char *s1)
 	i = 0;
 	while (*(s1 + i))
 		++i;
-	if (!(tmp = malloc(sizeof(*tmp) * (i + 1))))
+	tmp = malloc(sizeof(*tmp) * (i + 1));
+	if (!(tmp))
 		return (NULL);
 	i = -1;
 	while (*(s1 + ++i))

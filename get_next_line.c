@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gumatos <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: falmeida <falmeida@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/09 16:51:08 by gumatos           #+#    #+#             */
-/*   Updated: 2021/08/16 21:36:21 by falmeida         ###   ########.fr       */
+/*   Updated: 2021/08/17 22:09:59 by falmeida         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,9 @@ int	ft_add_line(char **buff, char **line)
 		++i;
 	if ((*buff)[i] == '\n')
 	{
-		if (!(*line = ft_substr(*buff, 0, i))
-				|| !(tmp = ft_strdup(&((*buff)[i + 1]))))
+		(*line) = ft_substr(*buff, 0, i);
+		tmp = ft_strdup(&((*buff)[i + 1]));
+		if (!(*line) || !(tmp))
 			return (-1);
 		free(*buff);
 		*buff = tmp;
@@ -50,7 +51,8 @@ int	ft_add_line(char **buff, char **line)
 	}
 	else
 	{
-		if (!(*line = ft_strdup(*buff)))
+		(*line) = ft_strdup(*buff);
+		if (!(*line))
 			return (-1);
 		free_buff(buff);
 		return (0);
@@ -64,7 +66,8 @@ int	ft_out(char **buff, char **line, char **buff_read, int ret)
 		return (-1);
 	else if (ret == 0 && *buff == NULL)
 	{
-		if (!(*line = ft_strdup("")))
+		(*line) = ft_strdup("");
+		if (!(*line))
 			return (-1);
 		return (0);
 	}
@@ -79,8 +82,9 @@ int	get_next_line(int fd, char **line)
 	char		*tmp;
 	int			ret;
 
+	buff_read = malloc(sizeof(*buff_read) * (BUFFER_SIZE + 1));
 	if (fd < 0 || line == NULL || BUFFER_SIZE <= 0
-			|| !(buff_read = malloc(sizeof(*buff_read) * (BUFFER_SIZE + 1))))
+		|| !(buff_read))
 		return (-1);
 	while ((ret = read(fd, buff_read, BUFFER_SIZE)) > 0)
 	{

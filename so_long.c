@@ -6,7 +6,7 @@
 /*   By: falmeida <falmeida@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/03 13:18:45 by falmeida          #+#    #+#             */
-/*   Updated: 2021/08/18 18:37:27 by falmeida         ###   ########.fr       */
+/*   Updated: 2021/08/18 19:14:46 by falmeida         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,6 @@ int	main(int argc, char **argv)
 {
 	t_data	img;
 	t_list	*list;
-	int		img_width;
-	int		img_height;
 
 	if (argc != 2)
 		return (1);
@@ -70,12 +68,10 @@ int	main(int argc, char **argv)
 		close_win(&img);
 	img.width = img.size_x;
 	img.height = img.size_y;
-	img_width = img.width * 100;
-	img_height = img.height * 100;
 	pick_images(&img);
 	img.mlx = mlx_init();
-	img.win = mlx_new_window(img.mlx, img_width, img_height, "So Long");
-	img.img = mlx_new_image(img.mlx, img_width, img_height);
+	img.win = mlx_new_window(img.mlx, img.width * 100, img.height * 100, "S_L");
+	img.img = mlx_new_image(img.mlx, img.width * 100, img.height * 100);
 	build_map(&img);
 	mlx_hook(img.win, 2, 1L << 0, key_print, &img);
 	mlx_hook(img.win, 17, 0, close_win, &img);

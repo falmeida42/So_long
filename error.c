@@ -6,7 +6,7 @@
 /*   By: falmeida <falmeida@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/06 21:11:37 by falmeida          #+#    #+#             */
-/*   Updated: 2021/08/18 15:44:37 by falmeida         ###   ########.fr       */
+/*   Updated: 2021/08/18 18:47:00 by falmeida         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,7 @@ int	check_walls(t_data *img)
 		i++;
 	}
 	if (result == 1)
-	{
-		write(1, "Error\n", 6);
-		write (1, "You need to build walls\n", 24);
-	}
+		error_walls();
 	return (result);
 }
 
@@ -77,11 +74,7 @@ int	check_elements(t_data *img)
 		i++;
 	}
 	if (img->e < 1 || img->c < 1 || img->p != 1)
-	{
-		write(1, "Error\n", 6);
-		write(1, "You forgot something\n", 21);
-		return (1);
-	}
+		return (error_elements());
 	return (0);
 }
 

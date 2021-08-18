@@ -6,7 +6,7 @@
 /*   By: falmeida <falmeida@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/16 20:14:00 by falmeida          #+#    #+#             */
-/*   Updated: 2021/08/18 17:14:54 by falmeida         ###   ########.fr       */
+/*   Updated: 2021/08/18 18:58:57 by falmeida         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,16 +64,17 @@ char	**map_builder(t_list *list, int i, int j)
 	return (map);
 }
 
-int		check_ber(char *argv)
+int	check_ber(char *argv)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (argv[i] != '\0')
 		i++;
 	i--;
 	if (argv[i] == 'r')
-	{	i--;
+	{
+		i--;
 		if (argv[i] == 'e')
 		{
 			i--;

@@ -6,7 +6,7 @@
 #    By: falmeida <falmeida@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/03 13:21:21 by falmeida          #+#    #+#              #
-#    Updated: 2021/08/16 21:02:41 by falmeida         ###   ########.fr        #
+#    Updated: 2021/08/18 18:50:08 by falmeida         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,7 @@ SRC = so_long.c					\
 		get_next_line.c			\
 		get_next_line_utils.c	\
 		utils.c					\
+		utils2.c				\
 
 %.o: %.c
 	gcc -Imlx -c $< -o $@

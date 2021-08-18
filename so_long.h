@@ -6,7 +6,7 @@
 /*   By: falmeida <falmeida@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/03 13:18:59 by falmeida          #+#    #+#             */
-/*   Updated: 2021/08/18 16:42:58 by falmeida         ###   ########.fr       */
+/*   Updated: 2021/08/18 18:49:30 by falmeida         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,4 +99,9 @@ int		check_elements(t_data *img);
 int		check_walls(t_data *img);
 int		check_square(t_data *img);
 //error.c
+
+//utils2.c
+void	error_walls(void);
+int		error_elements(void);
+//utils2.c
 #endif

@@ -6,11 +6,29 @@
 /*   By: falmeida <falmeida@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/09 16:45:48 by gumatos           #+#    #+#             */
-/*   Updated: 2021/08/17 22:03:20 by falmeida         ###   ########.fr       */
+/*   Updated: 2021/08/18 14:52:51 by falmeida         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+
+int	else_add_line(char **line, char **buff)
+{
+	(*line) = ft_strdup(*buff);
+	if (!(*line))
+		return (-1);
+	free_buff(buff);
+	return (0);
+}
+
+char	*else_gnl(char *buff, char *buff_read)
+{
+	char	*tmp;
+
+	tmp = ft_strjoin(buff, buff_read);
+	free(buff);
+	return (tmp);
+}
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {

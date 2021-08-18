@@ -6,42 +6,24 @@
 /*   By: falmeida <falmeida@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/06 20:47:19 by falmeida          #+#    #+#             */
-/*   Updated: 2021/08/17 22:35:23 by falmeida         ###   ########.fr       */
+/*   Updated: 2021/08/18 14:37:04 by falmeida         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	check_exit(t_data *img, char **map, int pi, int pj)
+void	conditions_change_map(t_data *img, char **map, int pi, int pj)
 {
-	if (img->bag == 0)
-	{
-		write(1, "You Win!\n", 9);
-		exit (0);
-	}
-}
-
-int	count_bag(t_data *img, char **map)
-{
-	int	i;
-	int	j;
-	int	bag;
-
-	bag = 0;
-	i = 0;
-	j = 0;
-	while (i < img->size_y)
-	{
-		j = 0;
-		while (j < img->size_x)
-		{
-			if (map[i][j] == 'C')
-				bag++;
-			j++;
-		}
-		i++;
-	}
-	return (bag);
+	if (map[pi + img->playerx / 100][pj + img->playery / 100] == 'C')
+		img->bag--;
+	if (map[pi + img->playerx / 100][pj + img->playery / 100] == 'E')
+		check_exit(img, map, pi, pj);
+	if (map[pi + img->playerx / 100][pj + img->playery / 100] == '1'
+		|| map[pi + img->playerx / 100][pj + img->playery / 100]
+			== 'E' && img->bag > 0)
+		return ;
+	map[pi][pj] = '0';
+	map[pi + img->playerx / 100][pj + img->playery / 100] = 'P';
 }
 
 void	change_map(t_data *img, char **map)
@@ -67,16 +49,21 @@ void	change_map(t_data *img, char **map)
 		}
 		i++;
 	}
-	if (map[pi + img->playerx / 100][pj + img->playery / 100] == 'C')
-		img->bag--;
-	if (map[pi + img->playerx / 100][pj + img->playery / 100] == 'E')
-		check_exit(img, map, pi, pj);
-	if (map[pi + img->playerx / 100][pj + img->playery / 100] == '1'
-		|| map[pi + img->playerx / 100][pj + img->playery / 100]
-			== 'E' && img->bag > 0)
-		return ;
-	map[pi][pj] = '0';
-	map[pi + img->playerx / 100][pj + img->playery / 100] = 'P';
+	conditions_change_map(img, map, pi, pj);
+}
+
+void	conditions_build_map(t_data *img, char **map, int i, int j)
+{
+	if (map[i][j] == '0')
+		draw_image(img, img->floor, i, j);
+	else if (map[i][j] == '1')
+		draw_image(img, img->wall, i, j);
+	else if (map[i][j] == 'P')
+		draw_image(img, img->player, i, j);
+	else if (map[i][j] == 'C')
+		draw_image(img, img->collect, i, j);
+	else if (map[i][j] == 'E')
+		draw_image(img, img->door, i, j);
 }
 
 void	build_map(t_data *img)
@@ -95,16 +82,7 @@ void	build_map(t_data *img)
 		j = 0;
 		while (j < img->width)
 		{
-			if (map[i][j] == '0')
-				draw_image(img, img->floor, i, j);
-			else if (map[i][j] == '1')
-				draw_image(img, img->wall, i, j);
-			else if (map[i][j] == 'P')
-				draw_image(img, img->player, i, j);
-			else if (map[i][j] == 'C')
-				draw_image(img, img->collect, i, j);
-			else if (map[i][j] == 'E')
-				draw_image(img, img->door, i, j);
+			conditions_build_map(img, map, i, j);
 			j++;
 		}
 		i++;

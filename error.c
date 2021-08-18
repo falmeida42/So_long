@@ -6,7 +6,7 @@
 /*   By: falmeida <falmeida@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/06 21:11:37 by falmeida          #+#    #+#             */
-/*   Updated: 2021/08/17 22:38:12 by falmeida         ###   ########.fr       */
+/*   Updated: 2021/08/18 14:05:06 by falmeida         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,40 +38,40 @@ int	check_walls(t_data *img)
 	return (0);
 }
 
+void	init_elements(t_data *img)
+{
+	img->e = 0;
+	img->c = 0;
+	img->p = 0;
+}
+
 int	check_elements(t_data *img)
 {
 	char	**map;
 	int		i;
 	int		j;
-	int		e;
-	int		c;
-	int		p;
-	int		result;
 
 	map = img->map;
 	i = 0;
-	e = 0;
-	c = 0;
-	p = 0;
-	result = 0;
+	init_elements(img);
 	while (i < img->size_y)
 	{
 		j = 0;
 		while (j < img->size_x)
 		{
 			if (map[i][j] == 'E')
-				e++;
+				img->e++;
 			if (map[i][j] == 'C')
-				c++;
+				img->c++;
 			if (map[i][j] == 'P')
-				p++;
+				img->p++;
 			j++;
 		}
 		i++;
 	}
-	if (e < 1 || c < 1 || p != 1)
-		result = 1;
-	return (result);
+	if (img->e < 1 || img->c < 1 || img->p != 1)
+		return (1);
+	return (0);
 }
 
 int	check_square(t_data *img)

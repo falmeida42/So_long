@@ -6,7 +6,7 @@
 /*   By: falmeida <falmeida@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/03 13:18:45 by falmeida          #+#    #+#             */
-/*   Updated: 2021/08/17 21:57:01 by falmeida         ###   ########.fr       */
+/*   Updated: 2021/08/18 14:18:15 by falmeida         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,10 @@ int	close_win(t_data *img)
 
 void	draw_image(t_data *img, char *image, int i, int j)
 {
-	img->addr = mlx_get_data_addr(img->img, &img->bpp, &img->line_length, &img->endian);
-	img->img = mlx_xpm_file_to_image(img->mlx, image, &img->img_width, &img->img_height);
+	img->addr = mlx_get_data_addr(img->img, &img->bpp,
+			&img->line_length, &img->endian);
+	img->img = mlx_xpm_file_to_image(img->mlx, image,
+			&img->img_width, &img->img_height);
 	mlx_put_image_to_window(img->mlx, img->win, img->img, j * 100, i * 100);
 }
 

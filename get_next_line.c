@@ -6,7 +6,7 @@
 /*   By: falmeida <falmeida@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/09 16:51:08 by gumatos           #+#    #+#             */
-/*   Updated: 2021/08/17 22:09:59 by falmeida         ###   ########.fr       */
+/*   Updated: 2021/08/18 14:52:39 by falmeida         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,8 @@ int	ft_add_line(char **buff, char **line)
 	}
 	else
 	{
-		(*line) = ft_strdup(*buff);
-		if (!(*line))
+		if (else_add_line(line, buff) == -1)
 			return (-1);
-		free_buff(buff);
 		return (0);
 	}
 }
@@ -86,21 +84,19 @@ int	get_next_line(int fd, char **line)
 	if (fd < 0 || line == NULL || BUFFER_SIZE <= 0
 		|| !(buff_read))
 		return (-1);
-	while ((ret = read(fd, buff_read, BUFFER_SIZE)) > 0)
+	ret = read(fd, buff_read, BUFFER_SIZE);
+	while (ret > 0)
 	{
 		buff_read[ret] = '\0';
 		if (buff == NULL)
 			buff = ft_strdup(buff_read);
 		else
-		{
-			tmp = ft_strjoin(buff, buff_read);
-			free(buff);
-			buff = tmp;
-		}
+			buff = else_gnl(buff, buff_read);
 		if (!buff)
 			return (-1);
 		if (ft_find_char(buff, '\n') != -1)
 			break ;
+		ret = read(fd, buff_read, BUFFER_SIZE);
 	}
 	return (ft_out(&buff, line, &buff_read, ret));
 }

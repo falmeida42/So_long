@@ -6,7 +6,7 @@
 /*   By: falmeida <falmeida@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/03 13:18:59 by falmeida          #+#    #+#             */
-/*   Updated: 2021/08/18 18:49:30 by falmeida         ###   ########.fr       */
+/*   Updated: 2021/08/18 21:57:27 by falmeida         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,8 @@ typedef struct s_data
 
 	int		fd;
 	int		ret;
+
+	int		moviment;
 }	t_data;
 
 # define W 13
@@ -103,5 +105,6 @@ int		check_square(t_data *img);
 //utils2.c
 void	error_walls(void);
 int		error_elements(void);
+char	*ft_itoa(int n);
 //utils2.c
 #endif

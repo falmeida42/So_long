@@ -6,7 +6,7 @@
 /*   By: falmeida <falmeida@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/06 20:47:19 by falmeida          #+#    #+#             */
-/*   Updated: 2021/08/18 22:12:37 by falmeida         ###   ########.fr       */
+/*   Updated: 2021/08/18 22:25:41 by falmeida         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,9 @@ void	change_map(t_data *img, char **map)
 
 void	conditions_build_map(t_data *img, char **map, int i, int j)
 {
+	char	*num;
+
+	num = ft_itoa(img->moviment);
 	if (map[i][j] == '0')
 		draw_image(img, img->floor, i, j);
 	else if (map[i][j] == '1')
@@ -64,6 +67,7 @@ void	conditions_build_map(t_data *img, char **map, int i, int j)
 		draw_image(img, img->collect, i, j);
 	else if (map[i][j] == 'E')
 		draw_image(img, img->door, i, j);
+	mlx_string_put(img->mlx, img->win, 50, 50, 0xFFFFFF, num);
 }
 
 void	build_map(t_data *img)
@@ -98,15 +102,21 @@ int	key_print(int key, t_data *img)
 	if (key == ESC)
 		close_win(img);
 	if (key == W)
+	{
+		img->player = "./cowboy_back.xpm";
 		img->playerx = -100;
+	}
 	else if (key == S)
+	{
+		img->player = "./cowboy.xpm";
 		img->playerx = 100;
+	}
 	else if (key == A)
 		img->playery = -100;
 	else if (key == D)
 		img->playery = 100;
 	build_map(img);
-	i++;
+	img->moviment = ++i;
 	printf("Moviments: %d\n", i);
 	return (0);
 }

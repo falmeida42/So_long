@@ -6,7 +6,7 @@
 /*   By: falmeida <falmeida@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/03 13:18:45 by falmeida          #+#    #+#             */
-/*   Updated: 2021/08/18 14:18:15 by falmeida         ###   ########.fr       */
+/*   Updated: 2021/08/18 18:37:27 by falmeida         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,20 @@
 
 int	close_win(t_data *img)
 {
-	(void)img;
+	int	i;
+
+	i = img->size_y;
+	while (i >= 0)
+	{
+		if (img->map[i])
+		{
+			free(img->map[i]);
+			img->map[i] = NULL;
+		}
+		i--;
+	}
+	free(img->map);
+	img->map = NULL;
 	exit(0);
 }
 
@@ -46,11 +59,15 @@ int	main(int argc, char **argv)
 
 	if (argc != 2)
 		return (1);
+	if (check_ber(argv[1]) == 1)
+		return (1);
 	list = content_map(&img, argv[1]);
+	if (!list)
+		return (1);
 	img.map = map_builder(list, img.size_x, img.size_y);
 	if (check_elements(&img) == 1 || check_walls(&img) == 1
 		|| check_square(&img) == 1)
-		return (1);
+		close_win(&img);
 	img.width = img.size_x;
 	img.height = img.size_y;
 	img_width = img.width * 100;

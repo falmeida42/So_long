@@ -6,7 +6,7 @@
 /*   By: falmeida <falmeida@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/16 20:14:00 by falmeida          #+#    #+#             */
-/*   Updated: 2021/08/18 14:37:10 by falmeida         ###   ########.fr       */
+/*   Updated: 2021/08/18 17:14:54 by falmeida         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	check_exit(t_data *img, char **map, int pi, int pj)
 	if (img->bag == 0)
 	{
 		write(1, "You Win!\n", 9);
-		exit (0);
+		close_win(img);
 	}
 }
 
@@ -64,6 +64,32 @@ char	**map_builder(t_list *list, int i, int j)
 	return (map);
 }
 
+int		check_ber(char *argv)
+{
+	int i;
+
+	i = 0;
+	while (argv[i] != '\0')
+		i++;
+	i--;
+	if (argv[i] == 'r')
+	{	i--;
+		if (argv[i] == 'e')
+		{
+			i--;
+			if (argv[i] == 'b')
+			{
+				i--;
+				if (argv[i] == '.')
+					return (0);
+			}
+		}
+	}
+	write(1, "Error\n", 6);
+	write(1, "The file need to be a .ber\n", 27);
+	return (1);
+}
+
 t_list	*content_map(t_data *img, char *argv)
 {
 	t_list	*link;
@@ -75,6 +101,11 @@ t_list	*content_map(t_data *img, char *argv)
 	y = 0;
 	tmp = link;
 	img->fd = open(argv, O_RDONLY);
+	if (img->fd == -1)
+	{
+		write(1, "Error\nInvalid file\n", 19);
+		exit(-1);
+	}
 	img->ret = 1;
 	while (img->ret > 0)
 	{

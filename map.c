@@ -6,7 +6,7 @@
 /*   By: falmeida <falmeida@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/06 20:47:19 by falmeida          #+#    #+#             */
-/*   Updated: 2021/08/18 14:37:04 by falmeida         ###   ########.fr       */
+/*   Updated: 2021/08/18 15:18:05 by falmeida         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ int	key_print(int key, t_data *img)
 	img->playerx = 0;
 	img->playery = 0;
 	if (key == ESC)
-		exit(0);
+		close_win(img);
 	if (key == W)
 		img->playerx = -100;
 	else if (key == S)

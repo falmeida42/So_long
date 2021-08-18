@@ -6,7 +6,7 @@
 /*   By: falmeida <falmeida@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/03 13:18:59 by falmeida          #+#    #+#             */
-/*   Updated: 2021/08/18 14:37:19 by falmeida         ###   ########.fr       */
+/*   Updated: 2021/08/18 16:42:58 by falmeida         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,12 +56,12 @@ typedef struct s_data
 
 	char	**map;
 
-	int	e;
-	int	c;
-	int	p;
+	int		e;
+	int		c;
+	int		p;
 
-	int	fd;
-	int	ret;
+	int		fd;
+	int		ret;
 }	t_data;
 
 # define W 13
@@ -72,10 +72,6 @@ typedef struct s_data
 
 void	draw_image(t_data *img, char *image, int i, int j);
 int		close_win(t_data *img);
-void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
-void	mlx_line(t_data *data, int x, int y, int p, int color);
-void	mlx_block(t_data *data, int x, int y, int p, int color);
-void	build_block(t_data *img, int x, int y, int p, int color);
 
 // map.c
 void	change_map(t_data *img, char **map);
@@ -88,6 +84,7 @@ int		count_bag(t_data *img, char **map);
 void	check_exit(t_data *img, char **map, int pi, int pj);
 char	**map_builder(t_list *list, int i, int j);
 t_list	*content_map(t_data *img, char *argv);
+int		check_ber(char *argv);
 // map2.c
 
 // utils.c

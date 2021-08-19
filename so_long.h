@@ -6,7 +6,7 @@
 /*   By: falmeida <falmeida@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/03 13:18:59 by falmeida          #+#    #+#             */
-/*   Updated: 2021/08/18 21:57:27 by falmeida         ###   ########.fr       */
+/*   Updated: 2021/08/19 18:03:09 by falmeida         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ typedef struct s_data
 	int		ret;
 
 	int		moviment;
+	int		index;
 }	t_data;
 
 # define W 13

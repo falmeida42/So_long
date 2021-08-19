@@ -6,7 +6,7 @@
 /*   By: falmeida <falmeida@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/06 20:47:19 by falmeida          #+#    #+#             */
-/*   Updated: 2021/08/19 16:09:57 by falmeida         ###   ########.fr       */
+/*   Updated: 2021/08/19 18:03:59 by falmeida         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ void	conditions_change_map(t_data *img, char **map, int pi, int pj)
 		|| map[pi + img->playerx / 100][pj + img->playery / 100]
 			== 'E' && img->bag > 0)
 		return ;
+	printf("Moviments %d\n", img->index);
+	img->index++;
 	map[pi][pj] = '0';
 	map[pi + img->playerx / 100][pj + img->playery / 100] = 'P';
 }
@@ -91,8 +93,6 @@ void	build_map(t_data *img)
 
 int	key_print(int key, t_data *img)
 {
-	static int	i;
-
 	img->playerx = 0;
 	img->playery = 0;
 	if (key == ESC)
@@ -105,8 +105,8 @@ int	key_print(int key, t_data *img)
 		img->playery = -100;
 	else if (key == D)
 		img->playery = 100;
+	else
+		return (-1);
 	build_map(img);
-	i++;
-	printf("Moviments: %d\n", i);
 	return (0);
 }

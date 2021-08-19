@@ -6,7 +6,7 @@
 /*   By: falmeida <falmeida@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/03 13:18:45 by falmeida          #+#    #+#             */
-/*   Updated: 2021/08/19 15:43:26 by falmeida         ###   ########.fr       */
+/*   Updated: 2021/08/19 18:04:35 by falmeida         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ void	pick_images(t_data *img)
 	img->door = "./door.xpm";
 	img->collect = "./collect.xpm";
 	img->addr = NULL;
+	img->index = 0;
 }
 
 int	main(int argc, char **argv)

@@ -6,11 +6,53 @@
 /*   By: falmeida <falmeida@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/06 20:47:19 by falmeida          #+#    #+#             */
-/*   Updated: 2021/08/19 18:41:43 by falmeida         ###   ########.fr       */
+/*   Updated: 2021/08/19 22:17:03 by falmeida         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+void	zombie(t_data *img)
+{
+	printf("You Lose\n");
+	close_win(img);
+}
+
+void	zombie_col(t_data *img, int pi, int pj)
+{
+	if (img->map[pi - 1][pj] == '0')
+		img->map[pi - 1][pj] = 'Z';
+	else if (img->map[pi + 1][pj] == '0')
+		img->map[pi + 1][pj] = 'Z';
+	img->map[pi][pj] = '0';
+}
+
+void	zombie_mov(t_data *img, char **map)
+{
+	int	pi;
+	int	pj;
+	static int	i;
+
+	pi = img->piz;
+	pj = img->pjz;
+	if (map[pi][pj - 1] == '1' || map[pi][pj + '1'] == '1')
+	{
+		zombie_col(img, pi, pj);
+		return ;
+	}
+	if (map[pi][pj - 1] == 'C' || map[pi][pj + '1'] == 'C')
+	{
+		zombie_col(img, pi, pj);
+		return ;
+	}
+	if (map[pi][pj - 1] == 'P' || map[pi][pj + '1'] == 'P')
+	img->map[pi][pj] = '0';
+	if (i % 2 == 0)
+		img->map[pi][pj - 1] = 'Z';
+	else
+		img->map[pi][pj + 1] = 'Z';
+	i++;
+}
 
 void	conditions_change_map(t_data *img, char **map, int pi, int pj)
 {
@@ -22,6 +64,8 @@ void	conditions_change_map(t_data *img, char **map, int pi, int pj)
 		|| map[pi + img->playerx / 100][pj + img->playery / 100]
 			== 'E' && img->bag > 0)
 		return ;
+	if (map[pi + img->playerx / 100][pj + img->playery / 100] == 'Z')
+		zombie(img);
 	printf("Moviments %d\n", img->index);
 	img->moviment = img->index;
 	img->index++;
@@ -48,6 +92,11 @@ void	change_map(t_data *img, char **map)
 				pi = i;
 				pj = j;
 			}
+			if (map[i][j] == 'Z')
+			{
+				img->piz = i;
+				img->pjz = j;
+			}
 			j++;
 		}
 		i++;
@@ -70,6 +119,8 @@ void	conditions_build_map(t_data *img, char **map, int i, int j)
 		draw_image(img, img->collect, i, j);
 	else if (map[i][j] == 'E')
 		draw_image(img, img->door, i, j);
+	else if (map[i][j] == 'Z')
+		draw_image(img, img->zombie, i, j);
 	mlx_string_put(img->mlx, img->win, 50, 50, 0xFFFFFF, num);
 }
 
@@ -114,6 +165,9 @@ int	key_print(int key, t_data *img)
 		img->playery = -100;
 	else if (key == D)
 		img->playery = 100;
+	else
+		return (-1);
+	zombie_mov(img, img->map);
 	build_map(img);
 	return (0);
 }

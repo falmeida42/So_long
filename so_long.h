@@ -6,7 +6,7 @@
 /*   By: falmeida <falmeida@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/03 13:18:59 by falmeida          #+#    #+#             */
-/*   Updated: 2021/08/19 18:03:09 by falmeida         ###   ########.fr       */
+/*   Updated: 2021/08/19 21:48:49 by falmeida         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ typedef struct s_data
 	int		playery;
 
 	char	*collect;
+	char	*zombie;
 	int		bag;
 
 	int		width;
@@ -65,6 +66,9 @@ typedef struct s_data
 
 	int		moviment;
 	int		index;
+
+	int		piz;
+	int		pjz;
 }	t_data;
 
 # define W 13

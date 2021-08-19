@@ -6,7 +6,7 @@
 #    By: falmeida <falmeida@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/03 13:21:21 by falmeida          #+#    #+#              #
-#    Updated: 2021/08/18 22:22:42 by falmeida         ###   ########.fr        #
+#    Updated: 2021/08/19 16:11:44 by falmeida         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,8 +53,10 @@ bonus: $(BONUS)
 
 clean:
 	/bin/rm -rf $(OBJS)
+	/bin/rm -rf $(OBJSB)
 
 fclean:
 	/bin/rm -f $(NAME)
+	/bin/rm -f $(BONUS)
 
 re: fclean all

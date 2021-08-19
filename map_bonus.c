@@ -6,7 +6,7 @@
 /*   By: falmeida <falmeida@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/06 20:47:19 by falmeida          #+#    #+#             */
-/*   Updated: 2021/08/18 22:25:41 by falmeida         ###   ########.fr       */
+/*   Updated: 2021/08/19 16:08:39 by falmeida         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,16 +101,14 @@ int	key_print(int key, t_data *img)
 	img->playery = 0;
 	if (key == ESC)
 		close_win(img);
+	img->player = "./cowboy.xpm";
 	if (key == W)
 	{
 		img->player = "./cowboy_back.xpm";
 		img->playerx = -100;
 	}
 	else if (key == S)
-	{
-		img->player = "./cowboy.xpm";
 		img->playerx = 100;
-	}
 	else if (key == A)
 		img->playery = -100;
 	else if (key == D)

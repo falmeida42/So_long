@@ -6,7 +6,7 @@
 /*   By: falmeida <falmeida@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/03 13:18:59 by falmeida          #+#    #+#             */
-/*   Updated: 2021/08/20 15:19:42 by falmeida         ###   ########.fr       */
+/*   Updated: 2021/08/20 18:40:03 by falmeida         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,18 +90,18 @@ int		key_print(int key, t_data *img);
 // map.c
 
 // map2.c
-int		count_bag(t_data *img, char **map);
+t_list	*content_map(t_data *img, char *argv);
 void	check_exit(t_data *img, char **map, int pi, int pj);
 char	**map_builder(t_list *list, int i, int j);
-t_list	*content_map(t_data *img, char *argv);
+int		count_bag(t_data *img, char **map);
 int		check_ber(char *argv);
 // map2.c
 
 // utils.c
-size_t	ft_strlen(const char *src);
 t_list	*ft_lstlast(t_list *lst);
-void	ft_lstadd_back(t_list **lst, t_list *new);
 t_list	*ft_lstnew(void *content);
+size_t	ft_strlen(const char *src);
+void	ft_lstadd_back(t_list **lst, t_list *new);
 // utils.c
 
 //error.c
@@ -112,7 +112,13 @@ int		check_square(t_data *img);
 
 //utils2.c
 void	error_walls(void);
-int		error_elements(void);
 char	*ft_itoa(int n);
+int		error_elements(void);
 //utils2.c
+
+//zombie.c
+void	zombie(t_data *img);
+void	zombie_mov(t_data *img, char **map);
+int		check_zombie(t_data *img);
+//zombie.c
 #endif

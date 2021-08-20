@@ -6,7 +6,7 @@
 /*   By: falmeida <falmeida@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/06 20:47:19 by falmeida          #+#    #+#             */
-/*   Updated: 2021/08/19 18:03:59 by falmeida         ###   ########.fr       */
+/*   Updated: 2021/08/20 18:39:28 by falmeida         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,9 +56,8 @@ void	change_map(t_data *img, char **map)
 
 void	conditions_build_map(t_data *img, char **map, int i, int j)
 {
-	if (map[i][j] == '0')
-		draw_image(img, img->floor, i, j);
-	else if (map[i][j] == '1')
+	draw_image(img, img->floor, i, j);
+	if (map[i][j] == '1')
 		draw_image(img, img->wall, i, j);
 	else if (map[i][j] == 'P')
 		draw_image(img, img->player, i, j);
@@ -66,6 +65,11 @@ void	conditions_build_map(t_data *img, char **map, int i, int j)
 		draw_image(img, img->collect, i, j);
 	else if (map[i][j] == 'E')
 		draw_image(img, img->door, i, j);
+	else if (map[i][j] != '0')
+	{
+		printf("Error\nInvalid caracther\n");
+		close_win(img);
+	}
 }
 
 void	build_map(t_data *img)

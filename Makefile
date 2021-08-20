@@ -6,7 +6,7 @@
 #    By: falmeida <falmeida@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/03 13:21:21 by falmeida          #+#    #+#              #
-#    Updated: 2021/08/19 16:11:44 by falmeida         ###   ########.fr        #
+#    Updated: 2021/08/20 18:29:07 by falmeida         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,6 +33,7 @@ SRCB = so_long.c				\
 		get_next_line_utils.c	\
 		utils.c					\
 		utils2.c				\
+		zombie.c				\
 
 %.o: %.c
 	gcc -Imlx -c $< -o $@

@@ -6,7 +6,7 @@
 /*   By: falmeida <falmeida@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/03 13:18:59 by falmeida          #+#    #+#             */
-/*   Updated: 2021/08/19 21:48:49 by falmeida         ###   ########.fr       */
+/*   Updated: 2021/08/20 15:19:42 by falmeida         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,9 @@ typedef struct s_data
 
 	int		piz;
 	int		pjz;
+
+	int		pi;
+	int		pj;
 }	t_data;
 
 # define W 13

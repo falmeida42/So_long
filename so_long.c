@@ -6,7 +6,7 @@
 /*   By: falmeida <falmeida@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/03 13:18:45 by falmeida          #+#    #+#             */
-/*   Updated: 2021/08/19 22:29:41 by falmeida         ###   ########.fr       */
+/*   Updated: 2021/08/20 15:13:28 by falmeida         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ void	pick_images(t_data *img)
 	img->wall = "./wall.xpm";
 	img->door = "./door.xpm";
 	img->collect = "./collect.xpm";
+	img->zombie = "./zombie.xpm";
 	img->addr = NULL;
 	img->index = 0;
 }

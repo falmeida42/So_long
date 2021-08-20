@@ -6,7 +6,7 @@
 /*   By: falmeida <falmeida@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/06 20:47:19 by falmeida          #+#    #+#             */
-/*   Updated: 2021/08/19 22:17:03 by falmeida         ###   ########.fr       */
+/*   Updated: 2021/08/20 16:56:13 by falmeida         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,40 +18,44 @@ void	zombie(t_data *img)
 	close_win(img);
 }
 
-void	zombie_col(t_data *img, int pi, int pj)
+int	check_zombie(t_data *img)
 {
-	if (img->map[pi - 1][pj] == '0')
-		img->map[pi - 1][pj] = 'Z';
-	else if (img->map[pi + 1][pj] == '0')
-		img->map[pi + 1][pj] = 'Z';
-	img->map[pi][pj] = '0';
+	int	piz;
+	int	pjz;
+
+	piz = img->piz + (img->playerx / 100);
+	if (img->playery == -100)
+		pjz = img->pjz + (img->playery / 100);
+	else
+		pjz = img->pjz + (img->playery / 100) * -1;
+	if (piz < 0 || pjz < 0)
+		return (1);
+	if (img->map[piz][pjz] == '1')
+		return (1);
+	if (img->map[piz][pjz] == 'P')
+		zombie(img);
+	return (0);
 }
 
 void	zombie_mov(t_data *img, char **map)
 {
-	int	pi;
-	int	pj;
-	static int	i;
+	int	piz;
+	int	pjz;
 
-	pi = img->piz;
-	pj = img->pjz;
-	if (map[pi][pj - 1] == '1' || map[pi][pj + '1'] == '1')
-	{
-		zombie_col(img, pi, pj);
+	piz = img->piz;
+	pjz = img->pjz;
+
+	if (check_zombie(img) == 1)
 		return ;
-	}
-	if (map[pi][pj - 1] == 'C' || map[pi][pj + '1'] == 'C')
-	{
-		zombie_col(img, pi, pj);
-		return ;
-	}
-	if (map[pi][pj - 1] == 'P' || map[pi][pj + '1'] == 'P')
-	img->map[pi][pj] = '0';
-	if (i % 2 == 0)
-		img->map[pi][pj - 1] = 'Z';
-	else
-		img->map[pi][pj + 1] = 'Z';
-	i++;
+	if (img->playerx == -100)
+		img->map[piz - 1][pjz] = 'Z';
+	if (img->playerx == 100)
+		img->map[piz + 1][pjz] = 'Z';
+	if (img->playery == 100)
+		img->map[piz][pjz - 1] = 'Z';
+	if (img->playery == -100)
+		img->map[piz][pjz - 1] = 'Z';
+	img->map[piz][pjz] = '0';
 }
 
 void	conditions_change_map(t_data *img, char **map, int pi, int pj)
@@ -66,7 +70,6 @@ void	conditions_change_map(t_data *img, char **map, int pi, int pj)
 		return ;
 	if (map[pi + img->playerx / 100][pj + img->playery / 100] == 'Z')
 		zombie(img);
-	printf("Moviments %d\n", img->index);
 	img->moviment = img->index;
 	img->index++;
 	map[pi][pj] = '0';
@@ -77,8 +80,6 @@ void	change_map(t_data *img, char **map)
 {
 	int	i;
 	int	j;
-	int	pi;
-	int	pj;
 
 	img->bag = count_bag(img, map);
 	i = 0;
@@ -89,8 +90,8 @@ void	change_map(t_data *img, char **map)
 		{
 			if (map[i][j] == 'P')
 			{
-				pi = i;
-				pj = j;
+				img->pi = i;
+				img->pj = j;
 			}
 			if (map[i][j] == 'Z')
 			{
@@ -101,7 +102,7 @@ void	change_map(t_data *img, char **map)
 		}
 		i++;
 	}
-	conditions_change_map(img, map, pi, pj);
+	conditions_change_map(img, map, img->pi, img->pj);
 }
 
 void	conditions_build_map(t_data *img, char **map, int i, int j)
@@ -135,10 +136,10 @@ void	build_map(t_data *img)
 	map = img->map;
 	change_map(img, map);
 	i = 0;
-	while (i < img->height)
+	while (i < img->size_y)
 	{
 		j = 0;
-		while (j < img->width)
+		while (j < img->size_x)
 		{
 			conditions_build_map(img, map, i, j);
 			j++;

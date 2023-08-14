@@ -35,18 +35,15 @@ SRCB = so_long.c				\
 		utils2.c				\
 		zombie.c				\
 
+OBJS = $(SRC:%.c=%.o)
+
 %.o: %.c
-	gcc -Imlx -c $< -o $@
+	gcc -I/usr/include -Imlx_linux -O3 -c $< -o $@
 
-OBJS = $(SRC:.c=.o)
-
-OBJSB = $(SRCB:.c=.o)
 
 $(NAME) : $(OBJS)
-	gcc $(OBJS) $(CFLAGS) -Lmlx -lmlx -framework OpenGL -framework AppKit -o $(NAME)
+	gcc $(OBJS)  -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o $(NAME)
 
-$(BONUS) : $(OBJSB)
-	gcc $(OBJSB) $(CFLAGS) -Lmlx -lmlx -framework OpenGL -framework AppKit -o $(BONUS)
 
 all: $(NAME)
 

@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "so_long.h"
+#include <stdio.h>
 
 void	conditions_change_map(t_data *img, char **map, int pi, int pj)
 {
@@ -97,6 +98,7 @@ void	build_map(t_data *img)
 
 int	key_print(int key, t_data *img)
 {
+
 	img->playerx = 0;
 	img->playery = 0;
 	if (key == ESC)
@@ -107,8 +109,11 @@ int	key_print(int key, t_data *img)
 		img->playerx = 100;
 	else if (key == A)
 		img->playery = -100;
-	else if (key == D)
+	else if (key == D) {
+		printf("inside\n");
 		img->playery = 100;
+	}
+		
 	else
 		return (-1);
 	build_map(img);

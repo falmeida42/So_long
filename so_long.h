@@ -74,11 +74,11 @@ typedef struct s_data
 	int		pj;
 }	t_data;
 
-# define W 13
-# define S 1
-# define A 0
-# define D 2
-# define ESC 53
+# define W 119
+# define S 115
+# define A 97
+# define D 100
+# define ESC 65307
 
 void	draw_image(t_data *img, char *image, int i, int j);
 int		close_win(t_data *img);

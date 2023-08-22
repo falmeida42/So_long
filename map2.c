@@ -40,6 +40,8 @@ void	check_exit(t_data *img, char **map, int pi, int pj)
 	if (img->bag == 0)
 	{
 		write(1, "You Win!\n", 9);
+		img->you_win = true;
+		draw_you_win(img, map);
 	}
 }
 

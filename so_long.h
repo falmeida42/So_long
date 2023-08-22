@@ -17,6 +17,7 @@
 # include <stdio.h>
 # include <mlx.h>
 # include <stdlib.h>
+# include <stdbool.h>
 # include "get_next_line.h"
 
 typedef struct s_list
@@ -72,6 +73,8 @@ typedef struct s_data
 
 	int		pi;
 	int		pj;
+
+	bool	you_win;
 }	t_data;
 
 # define W 119
@@ -86,7 +89,8 @@ int		close_win(t_data *img);
 // map.c
 void	change_map(t_data *img, char **map);
 void	build_map(t_data *img);
-int		key_print(int key, t_data *img);
+void	draw_you_win(t_data *img, char **map);
+int		main_loop(int key, t_data *img);
 // map.c
 
 // map2.c

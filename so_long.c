@@ -75,7 +75,7 @@ int	main(int argc, char **argv)
 	img.win = mlx_new_window(img.mlx, img.width * 100, img.height * 100, "S_L");
 	img.img = mlx_new_image(img.mlx, img.width * 100, img.height * 100);
 	build_map(&img);
-	mlx_hook(img.win, 2, 1L << 0, key_print, &img);
+	mlx_hook(img.win, 2, 1L << 0, main_loop, &img);
 	mlx_hook(img.win, 17, 0, close_win, &img);
 	mlx_loop(img.mlx);
 }

@@ -57,7 +57,7 @@ void	change_map(t_data *img, char **map)
 
 void	conditions_build_map(t_data *img, char **map, int i, int j)
 {
-	draw_image(img, img->floor, i, j);
+	printf("%c", map[i][j]);
 	if (map[i][j] == '1')
 		draw_image(img, img->wall, i, j);
 	else if (map[i][j] == 'P')
@@ -66,11 +66,17 @@ void	conditions_build_map(t_data *img, char **map, int i, int j)
 		draw_image(img, img->collect, i, j);
 	else if (map[i][j] == 'E')
 		draw_image(img, img->door, i, j);
-	else if (map[i][j] != '0')
+	else if (map[i][j] == '0')
 	{
+		draw_image(img, img->floor, i, j);
+	}
+	else
+	{
+		draw_image(img, img->floor, i, j);
 		printf("Error\nInvalid caracther\n");
 		close_win(img);
 	}
+	
 }
 
 void	build_map(t_data *img)
@@ -99,6 +105,7 @@ void	build_map(t_data *img)
 int	key_print(int key, t_data *img)
 {
 
+	printf("%d", key);
 	img->playerx = 0;
 	img->playery = 0;
 	if (key == ESC)
@@ -109,11 +116,8 @@ int	key_print(int key, t_data *img)
 		img->playerx = 100;
 	else if (key == A)
 		img->playery = -100;
-	else if (key == D) {
-		printf("inside\n");
+	else if (key == D)
 		img->playery = 100;
-	}
-		
 	else
 		return (-1);
 	build_map(img);

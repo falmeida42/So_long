@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "includes/so_long.h"
 #include <stdio.h>
 
 void	conditions_change_map(t_data *img, char **map, int pi, int pj)

@@ -14,14 +14,16 @@ CFLAGS = -Wall -Wextra -Werror -g
 
 NAME = so_long
 
+INCLUDE_PATH = includes
+
 BONUS = so_long_bonus
 
 SRC = so_long.c					\
 		map.c					\
 		map2.c					\
 		error.c 				\
-		get_next_line.c			\
-		get_next_line_utils.c	\
+		get_next_line/get_next_line.c			\
+		get_next_line/get_next_line_utils.c	\
 		utils.c					\
 		utils2.c				\
 
@@ -42,7 +44,7 @@ OBJS = $(SRC:%.c=%.o)
 
 
 $(NAME) : $(OBJS)
-	gcc $(OBJS)  -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o $(NAME)
+	gcc $(OBJS) -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -I $(INCLUDE_PATH) -o $(NAME)
 
 
 all: $(NAME)
@@ -53,7 +55,7 @@ clean:
 	/bin/rm -rf $(OBJS)
 	/bin/rm -rf $(OBJSB)
 
-fclean:
+fclean: clean
 	/bin/rm -f $(NAME)
 	/bin/rm -f $(BONUS)
 

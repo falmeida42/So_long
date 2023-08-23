@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "includes/so_long.h"
 
 int	close_win(t_data *img)
 {
@@ -42,12 +42,12 @@ void	draw_image(t_data *img, char *image, int i, int j)
 
 void	pick_images(t_data *img)
 {
-	img->player = "./cowboy.xpm";
-	img->floor = "./wood.xpm";
-	img->wall = "./wall.xpm";
-	img->door = "./door.xpm";
-	img->collect = "./collect.xpm";
-	img->zombie = "./zombie.xpm";
+	img->player = "./textures/cowboy.xpm";
+	img->floor = "./textures/wood.xpm";
+	img->wall = "./textures/wall.xpm";
+	img->door = "./textures/door.xpm";
+	img->collect = "./textures/collect.xpm";
+	img->zombie = "./textures/zombie.xpm";
 	img->addr = NULL;
 	img->index = 0;
 }
